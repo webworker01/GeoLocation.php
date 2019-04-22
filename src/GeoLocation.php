@@ -224,7 +224,7 @@ class GeoLocation {
 	 *	@return \stdClass
 	 */
 	public static function getGeocodeFromGoogle($location, $apikey="") {
-		$url = 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($location).'&sensor=false&key='.$apikey;
+		$url = 'https://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($location).'&sensor=false&key='.$apikey;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL,$url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
