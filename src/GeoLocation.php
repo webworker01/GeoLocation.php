@@ -1,5 +1,5 @@
 <?php
-namespace AnthonyMartin\GeoLocation;
+namespace webworker01\GeoLocation;
 
 /**
  * <p>Represents a point on the surface of a sphere. (The Earth is almost
@@ -223,16 +223,18 @@ class GeoLocation {
 	 *	@param string $location address, city, state, etc.
 	 *	@return \stdClass
 	 */
-	public static function getGeocodeFromGoogle($location) {
-		$url = 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($location).'&sensor=false';
+	public static function getGeocodeFromGoogle($location, $apikey="") {
+		$url = 'http://maps.googleapis.com/maps/api/geocode/json?address='.urlencode($location).'&sensor=false&key='.$apikey;
 		$ch = curl_init();
-	    curl_setopt($ch, CURLOPT_URL,$url);
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-	    return json_decode(curl_exec($ch));
+		curl_setopt($ch, CURLOPT_URL,$url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		return json_decode(curl_exec($ch));
 	}
+
 	public static function MilesToKilometers($miles) {
 		return $miles * 1.6093439999999999;
 	}
+
 	public static function KilometersToMiles($km) {
 		return $km * 0.621371192237334;
 	}
